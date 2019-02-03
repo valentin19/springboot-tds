@@ -1,12 +1,16 @@
 {{> header}}
 
 <h1>Items</h1>
+
+<a class="ui button active" href="/td0/items/new">Ajouter un item</a>
+
 <ul>
     {{#items}}
-    <li>{{nom}}</li>
+    <li>{{evaluation}} - {{nom}}
+	    <a class="ui button positive" href="/td0/items/inc/{{nom}}">Incremente</a>
+	    <a class="ui button negative" href="/td0/items/dec/{{nom}}">decremente</a>
+    </li>
     {{/items}}
 </ul>
-
-<a class="ui button active" href="new">Ajouter un item</a>
 
 {{> footer}}

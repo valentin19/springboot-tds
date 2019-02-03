@@ -13,34 +13,34 @@ import java.util.List;
 @Controller
 @SessionAttributes("/items")
 public class ItemsController {
-
-    @ModelAttribute("items")
+	List<Item> items = new ArrayList<>();
+    
+	@ModelAttribute("items")
     public List<Item> getItems()
     {
-        List<Item> items = new ArrayList<>();
         return items;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("items/")
     public String index(ModelMap model)
     {
-        model.addAttribute("item", "test");
+    	model.addAttribute("items", getItems());
         return "index";
     }
 
-    @RequestMapping("new")
+    @RequestMapping("items/new")
     public String newItem()
     {
         return "newItem";
     }
 
-    @PostMapping("addNew")
+    @PostMapping("items/addNew")
     public RedirectView addNew(@RequestParam("nom") String nom, @RequestParam("evaluation") int evaluation) {
         Item item = new Item();
         item.setNom(nom);
         item.setEvaluation(evaluation);
         getItems().add(item);
-        return new RedirectView("/td0/");
+        return new RedirectView("/td0/items/");
     }
 
     @PostMapping("addNewBis")
@@ -53,6 +53,39 @@ public class ItemsController {
         item.setEvaluation(eval);
         getItems().add(item);
         return new RedirectView("/items");
+    }
+    
+    @RequestMapping("items/inc/{nom}")
+    public RedirectView incrementEvaluation(@PathVariable String nom)
+    {
+    	for(Item item : getItems())
+    	{
+    		if(item.getNom().equals(nom))
+    		{
+    			item.setEvaluation(item.getEvaluation()+1);
+    		}
+    	}
+    	return new RedirectView("/td0/items/");
+    }
+    
+    @RequestMapping("items/dec/{nom}")
+    public RedirectView decrementetEvaluation(@PathVariable String nom)
+    {
+    	for(Item item : getItems())
+    	{
+    		if(item.getNom().equals(nom))
+    		{
+    			item.setEvaluation(item.getEvaluation()-1);
+    		}
+    	}
+    	return new RedirectView("/td0/items/");
+    }
+    
+    @RequestMapping("items/delete/{index}")
+    public RedirectView deleteItem(@PathVariable int index)
+    {
+    	getItems().remove(getItems().get(index));
+    	return new RedirectView("/td0/items/");
     }
 
 	/*@RequestMapping("/new")

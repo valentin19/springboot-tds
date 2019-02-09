@@ -1,0 +1,20 @@
+	<form class="ui form">
+
+		<div class="field">
+	    	<label>Name</label>
+	    	<input type="text" name="name" placeholder="Name" value="{{#org}}{{name}}{{/org}}">
+	  	</div>
+	  	<div class="field">
+	    	<label>Domain</label>
+	    	<input type="text" name="domain" placeholder="Domain" value="{{#org}}{{domain}}{{/org}}">
+	  	</div>
+	  	<div class="field">
+	    	<label>Aliases</label>
+	    	<input type="text" name="aliases" placeholder="Aliases" value="{{#org}}{{aliases}}{{/org}}">
+	  	</div>
+	</form>
+	
+	<div class="ui segment">
+		<a class="ui button positive">Validate</a>
+		<a href="index" class="ui button" tabindex="0">Cancel</a>
+	</div>

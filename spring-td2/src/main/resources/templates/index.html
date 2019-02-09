@@ -1,0 +1,47 @@
+{{>header}}
+
+
+<div class="ui segment">
+	<i class="envelope icon"></i> <p>SpringBoot n°2</p>
+	
+	<a href="new" class="ui grey button"><i class="plus square icon"></i>Ajouter une organisation</a>
+	
+	<table class="ui bottom attached table">
+		<thead>
+	      	<tr>
+		      <th>Id</th>
+		      <th>Name</th>
+		      <th>Domain</th>
+		      <th>Aliases</th>
+		      <th></th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    {{#orgas}}
+	     <tr>
+	        <td>{{id}}</td>
+	        <td>{{name}}</td>
+	        <td>{{domain}}</td>
+	        <td>{{aliases}}</td>
+	        <td>
+	        	<i class="home icons">
+	        		<i class="big circle outline grey icon"></i>
+	        		<i class="eye grey icon"></i>
+	        	</i>
+	        	<i class="home icons">
+	        		<i class="big circle outline grey icon"></i>
+	        		<i class="edit grey icon"></i>
+	        	</i>
+	        	<i class="home icons">
+	        		<i class="big circle outline red icon"></i>
+	        		<i class="times red icon"></i>
+	        	</i>
+	        </td>
+	      </tr>
+	    {{/orgas}}
+	      
+	    </tbody>
+  	</table>
+</div>
+
+{{>footer}}

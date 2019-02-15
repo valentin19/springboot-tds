@@ -1,4 +1,4 @@
-	<form class="ui form">
+	<form class="ui form" method="post" action="">
 
 		<div class="field">
 	    	<label>Name</label>
@@ -12,9 +12,11 @@
 	    	<label>Aliases</label>
 	    	<input type="text" name="aliases" placeholder="Aliases" value="{{#org}}{{aliases}}{{/org}}">
 	  	</div>
+	  	
+	  	<div class="ui segment">
+			<input class="ui button positive" type="submit" value="Valider">
+			<a href="/orgas/index" class="ui button" tabindex="0">Cancel</a>
+		</div>
 	</form>
 	
-	<div class="ui segment">
-		<a class="ui button positive">Validate</a>
-		<a href="/orgas/index" class="ui button" tabindex="0">Cancel</a>
-	</div>
+	

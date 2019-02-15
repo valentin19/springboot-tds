@@ -4,7 +4,7 @@
 <div class="ui segment">
 	<i class="envelope icon"></i> <p>SpringBoot n°2</p>
 	
-	<a href="new" class="ui grey button"><i class="plus square icon"></i>Ajouter une organisation</a>
+	<a href="/orgas/new" class="ui grey button"><i class="plus square icon"></i>Ajouter une organisation</a>
 	
 	<table class="ui bottom attached table">
 		<thead>
@@ -24,23 +24,14 @@
 	        <td>{{domain}}</td>
 	        <td>{{aliases}}</td>
 	        <td>
-	        	<a href="display/{{id}}">
-	        		<i class="home icons">
-	        			<i class="big circle outline grey icon"></i>
-	        			<i class="eye grey icon"></i>
-	        		</i>
+	        	<a href="/orgas/display/{{id}}" class="ui basic circular icon button">
+	        		<i class="ui eye grey icon"></i>
 	        	</a>
-	        	<a href="edit/{{id}}">
-	        		<i class="home icons">
-	        			<i class="big circle outline grey icon"></i>
-	        			<i class="edit grey icon"></i>
-	        		</i>
+	        	<a href="/orgas/edit/{{id}}" class="ui basic circular icon button">
+	        		<i class="ui edit grey icon"></i>
 	        	</a>
-	        	<a href="remove/{{id}}">
-	        		<i class="home icons">
-	        			<i class="big circle outline red icon"></i>
-	        			<i class="times red icon"></i>
-	        		</i>
+	        	<a href="/orgas/delete/{{id}}" class="ui basic circular icon button">
+	        		<i class="ui times red icon"></i>
 	        	</a>
 	        </td>
 	      </tr>
@@ -49,5 +40,24 @@
 	    </tbody>
   	</table>
 </div>
+
+{{#org}}
+<div class="ui red message grid">
+	<div class="one wide column">
+		<i class="info huge circle icon"></i>
+	</div>
+	<div class="fifteen wide column">
+		<p>Confirmation de la suppression</p>
+		<p>Confirmez-vous la suppression de '{{domain}}'?</p>
+		
+		<div class="ui clearing divider"></div>
+		
+		<div class="right floated">
+			<a href="/orgas/index" class="ui button">Annuler</a>
+			<a href="/orgas/confirmDelete/{{id}}" class="ui button negative">Confirmer</a>
+		</div>
+	</div>
+</div>
+{{/org}}
 
 {{>footer}}

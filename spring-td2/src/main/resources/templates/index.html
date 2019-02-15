@@ -24,18 +24,24 @@
 	        <td>{{domain}}</td>
 	        <td>{{aliases}}</td>
 	        <td>
-	        	<i class="home icons">
-	        		<i class="big circle outline grey icon"></i>
-	        		<i class="eye grey icon"></i>
-	        	</i>
-	        	<i class="home icons">
-	        		<i class="big circle outline grey icon"></i>
-	        		<i class="edit grey icon"></i>
-	        	</i>
-	        	<i class="home icons">
-	        		<i class="big circle outline red icon"></i>
-	        		<i class="times red icon"></i>
-	        	</i>
+	        	<a href="display/{{id}}">
+	        		<i class="home icons">
+	        			<i class="big circle outline grey icon"></i>
+	        			<i class="eye grey icon"></i>
+	        		</i>
+	        	</a>
+	        	<a href="edit/{{id}}">
+	        		<i class="home icons">
+	        			<i class="big circle outline grey icon"></i>
+	        			<i class="edit grey icon"></i>
+	        		</i>
+	        	</a>
+	        	<a href="remove/{{id}}">
+	        		<i class="home icons">
+	        			<i class="big circle outline red icon"></i>
+	        			<i class="times red icon"></i>
+	        		</i>
+	        	</a>
 	        </td>
 	      </tr>
 	    {{/orgas}}

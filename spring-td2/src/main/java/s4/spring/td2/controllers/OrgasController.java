@@ -2,11 +2,11 @@ package s4.spring.td2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.view.RedirectView;
 
 import s4.spring.td2.entities.Groupe;
 import s4.spring.td2.entities.Organisation;
@@ -85,6 +85,30 @@ public class OrgasController {
 		
 		model.addAttribute("org", orgasRepo.findById(id).get());
 		return "editOrg";
+	}
+	
+	@RequestMapping("display/{id}")
+	public String displayOrg(ModelMap model, @PathVariable int id) throws IllegalAccessException
+	{
+		if(orgasRepo.findById(id) == null)
+		{
+			throw new IllegalAccessException("id incorrect");
+		}
+		
+		model.addAttribute("org", orgasRepo.findById(id).get());
+		return "displayOrg";
+	}
+	
+	@RequestMapping("remove/{id}")
+	public RedirectView removeOrg(ModelMap model, @PathVariable int id) throws IllegalAccessException
+	{
+		if(orgasRepo.findById(id) == null)
+		{
+			throw new IllegalAccessException("id incorrect");
+		}
+		
+		//orgasRepo.remove(orgasRepo.findById(id).get());
+		return new RedirectView("index");
 	}
 	
 }

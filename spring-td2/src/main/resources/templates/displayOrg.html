@@ -1,8 +1,60 @@
 {{>header}}
 <div class="ui segment">
-	<i class="envelope icon"></i> <p>SpringBoot n°2</p>
+	<i class="envelope icon"></i>
+	<p>SpringBoot nÂ°2</p>
+
+	<a href="/orgas/new" class="ui grey button">
+		<i class="plus square icon"></i>Ajouter une organisation
+	</a>
 	
-	<a href="/orgas/new" class="ui grey button"><i class="plus square icon"></i>Ajouter une organisation</a>
+	{{#org}}
+	<a href="/orgas/index" class="ui button">Fermer</a>
+	<a href="/orgas/delete/{{id}}" class="ui negative basic button">Supprimer {{domain}}</a>
+	<a href="/orgas/edit/{{id}}" class="ui secondary basic button">Modifier {{domain}}</a>
 	
+	
+	<table class="ui definition table">
+	  <tbody>
+	    <tr>
+	      <td class="six wide column">Id</td>
+	      <td>{{id}}</td>
+	    </tr>
+	    <tr>
+	      <td>Name</td>
+	      <td>{{name}}</td>
+	    </tr>
+	    <tr>
+	      <td>Domain</td>
+	      <td>{{domain}}</td>
+	    </tr>
+	    <tr>
+	      <td>Aliases</td>
+	      <td>{{aliases}}</td>
+	    </tr>
+	    <tr>
+	      <td>Groupes</td>
+	      <td>
+	      	{{#groupes}}
+	      		<div>{{name}}</div>
+	      	{{/groupes}}
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>organizationSettings</td>
+	      <td></td>
+	    </tr>
+	    <tr>
+	      <td>Users</td>
+	      <td>
+	      	{{#users}}
+	      		<div>{{email}}</div>
+	      	{{/users}}
+	      </td>
+	    </tr>
+
+	  </tbody>
+	</table>
+	
+	{{/org}}
 </div>
 {{>footer}}

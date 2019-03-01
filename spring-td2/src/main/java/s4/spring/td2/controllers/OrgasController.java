@@ -166,4 +166,10 @@ public class OrgasController {
 		return new RedirectView("/orgas/index");
 	}
 	
+	@RequestMapping("search")
+	public String search()
+	{
+		return "index";
+	}
+	
 }

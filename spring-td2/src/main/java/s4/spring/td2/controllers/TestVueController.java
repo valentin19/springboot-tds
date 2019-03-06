@@ -21,6 +21,7 @@ public class TestVueController {
 
 	@Autowired
 	private VueJS vue;
+	@Autowired
 	private OrgasRepository orgasRepo;
 	
 	@RequestMapping("test")
@@ -50,13 +51,15 @@ public class TestVueController {
 		List<Organisation> orgas = orgasRepo.findAll();
 		
 		vue.addData("orgas", orgas);
-		vue.addData("headers", "[{text:'Name', value:'name'},{text:'Domain', value:'domain'},{text:'Aliases', value:'aliases'}]");
-		vue.addDataRaw("dialog", "false");
+		vue.addDataRaw("headers", "[{text:'Name', value:'name'},{text:'Domain', value:'domain'},{text:'Aliases', value:'aliases'}]");
+		vue.addData("dialog", false);
 		vue.addDataRaw("editedItem", "{}");
 		vue.addDataRaw("editedIndex", "-1");
 		vue.addComputed("formTitle", "(this.itemIndex==-1)?'Nouvelle orga':'Modification orga'");
 		vue.addMethod("close", "this.dialog=false;");
-		vue.addMethod("save", "", "orga");
+		//vue.addMethod("save", "", "orga");
+		vue.addMethod("save", "var self=this;" + Http.post("/rest/orgas/create", "self.editedItem", "self.orgas.push(response.data);self.dialog=false;self.editedItem.name='';self.editedItem.domain='';self.editedItem.aliases='';"));
+		vue.addMethod("deleteItem", "var self=this;" + Http.delete("/rest/orgas/delete", (Object)"{data:organisation}", "self.orgas.splice(self.orgas.indexOf(organisation), 1);"), "organisation");
 
 		return "vueJs/index";
 	}

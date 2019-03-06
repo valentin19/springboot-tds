@@ -15,7 +15,7 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">{{ formTitle }}</span>
+            <span class="headline"><% formTitle %></span>
           </v-card-title>
 
           <v-card-text>
@@ -25,7 +25,7 @@
                   <v-text-field v-model="editedItem.name" label="Orga name"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.domain" label="domain"></v-text-field>
+                  <v-text-field v-model="editedItem.domain" label="Domain"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
                   <v-text-field v-model="editedItem.aliases" label="Aliases"></v-text-field>
@@ -48,10 +48,9 @@
       class="elevation-1"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.domain }}</td>
-        <td class="text-xs-right">{{ props.item.aliases }}</td>
+        <td class="text-xs-left"><% props.item.name %></td>
+        <td class="text-xs-left"><% props.item.domain %></td>
+        <td class="text-xs-left"><% props.item.aliases %></td>
         <td class="justify-center layout px-0">
           <v-icon
             small

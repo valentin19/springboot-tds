@@ -42,7 +42,7 @@ public class RestTestController {
 	
 	@PutMapping("/update")
 	public Organisation update(@RequestBody Organisation orga) {
-		return orgasRepo.saveAndFlush(orga);
+		return orgasRepo.save(orga);
 	}
 	
 	@DeleteMapping("/delete")

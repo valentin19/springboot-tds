@@ -1,0 +1,31 @@
+<template>
+  <v-data-table
+    :headers="headers"
+    :items="items"
+    class="elevation-1"
+  >
+  
+    <template v-slot:items="props">
+    <td v-if="header in headers">props.item[header.value]</td>
+        <td class="justify-center layout px-0">
+          <v-icon
+            small
+            class="mr-2"
+            @click="$emit('edititem', props.item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            small
+            @click="$emit('deleteItem', props.item)"
+          >
+            delete
+          </v-icon>
+        </td>
+      </template>
+    
+    <template v-slot:no-data>
+		{{noData}}
+	</template>
+  </v-data-table>
+</template>

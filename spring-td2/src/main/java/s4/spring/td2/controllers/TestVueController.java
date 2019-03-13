@@ -60,7 +60,8 @@ public class TestVueController {
 		//vue.addMethod("save", "", "orga");
 		vue.addMethod("save", "var self=this;" + Http.post("/rest/orgas/create", "self.editedItem", "self.orgas.push(response.data);self.dialog=false;self.editedItem.name='';self.editedItem.domain='';self.editedItem.aliases='';"));
 		vue.addMethod("deleteItem", "var self=this;" + Http.delete("/rest/orgas/delete", (Object)"{data:organisation}", "self.orgas.splice(self.orgas.indexOf(organisation), 1);"), "organisation");
-
+		//vue.addMethod("editItem", "var self=this;" + Http.put("/rest/orgas/update"));
+		
 		return "vueJs/index";
 	}
 }

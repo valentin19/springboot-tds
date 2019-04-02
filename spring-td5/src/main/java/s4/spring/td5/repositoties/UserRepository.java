@@ -6,6 +6,6 @@ import s4.spring.td5.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
-	User findOneByEmail(String email);
+	User findOneByLogin(String login);
 
 }

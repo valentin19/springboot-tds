@@ -1,0 +1,30 @@
+<div class="field">
+	<input type="hidden" name="id" {{#script}} value="{{id}}" {{/script}}{{^script}} value="0" {{/script}}>
+    <label>Title</label>
+    <input type="text" name="title" {{#script}} value="{{title}}" {{/script}} placeholder="Title">
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <input type="text" name="description" {{#script}} value="{{description}}" {{/script}} placeholder="Description">
+  </div>
+  <div class="field">
+    <label>Content</label>
+    <input type="text" name="content" {{#script}} value="{{content}}" {{/script}} placeholder="Content">
+  </div>
+  <div class="field">
+    <label>Catégorie</label>
+    <select name="categorie">
+    	{{#categories}}
+    		<option value="{{id}}">{{name}}</option>
+    	{{/categories}}
+    </select>
+  </div>
+  <div class="field">
+    <label>Language</label>
+    <select name="language">
+    	{{#languages}}
+    		<option value="{{id}}">{{name}}</option>
+    	{{/languages}}
+    </select>
+  </div>
+  <button class="ui button" type="submit">Submit</button>

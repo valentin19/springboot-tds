@@ -1,5 +1,6 @@
 package s4.spring.td5.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +20,7 @@ public class Script {
 	private String title;
 	private String description;
 	private String content;
-	private String creationDate;
+	private Date creationDate;
 	
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="script")
@@ -82,10 +83,10 @@ public class Script {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(String creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 	

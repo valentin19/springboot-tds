@@ -1,5 +1,7 @@
 package s4.spring.td5.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,50 +12,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import s4.spring.td5.entities.Script;
 import s4.spring.td5.entities.User;
+import s4.spring.td5.repositoties.ScriptRepository;
 import s4.spring.td5.repositoties.UserRepository;
 
 @Controller
 @RequestMapping("/")
 public class ConnexionController {
 	
-	private User user;
-	
 	@Autowired
 	private UserRepository userRepo;
 	
-	@RequestMapping("index")
-	public String index(ModelMap model)
-	{
-		if(user == null)
-		{
-			return "index";
-		}
-		else
-		{
-			return "script";
-		}
-	}
+	@Autowired
+	private ScriptRepository scriptRepo;
 	
+	@RequestMapping("index")
+	public String index(ModelMap model, HttpSession session)
+	{
+		User user = (User)session.getAttribute("user");
+		model.put("user", user);
+		
+		List<Script> lesScripts = scriptRepo.findByUser(user);
+		
+		model.put("scripts", lesScripts);
+		
+		return "index";
+	}
 
 	@PostMapping("login")
-	public RedirectView login(@RequestParam("email") String email, @RequestParam("password") String password)
+	public RedirectView login(HttpSession session, @RequestParam("login") String login, @RequestParam("password") String password)
 	{
-		User user1 = userRepo.findOneByEmail(email);
+		User user = userRepo.findOneByLogin(login);
 		
-		if(user1 != null && user1.getPassword().equals(password))
+		if(user != null && user.getPassword().equals(password))
 		{
-			user = user1;
-			//HttpSession.setAttribute("user", user);
+			session.setAttribute("user", user);
 		}
 		
 		return new RedirectView("index");
 	}
 	
 	@RequestMapping("logout")
-	public RedirectView logout()
+	public RedirectView logout(HttpSession session)
 	{
-		user = null;
+		session.setAttribute("user", null);
 		return new RedirectView("index");
 	}
 

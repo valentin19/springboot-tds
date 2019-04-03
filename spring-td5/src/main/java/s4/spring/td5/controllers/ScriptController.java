@@ -14,9 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import s4.spring.td5.entities.History;
 import s4.spring.td5.entities.Script;
 import s4.spring.td5.entities.User;
 import s4.spring.td5.repositoties.CategoryRepository;
+import s4.spring.td5.repositoties.HistoryRepository;
 import s4.spring.td5.repositoties.LanguageRepository;
 import s4.spring.td5.repositoties.ScriptRepository;
 
@@ -32,6 +34,8 @@ public class ScriptController {
 	
 	@Autowired
 	private ScriptRepository scriptRepo;
+	@Autowired
+	private HistoryRepository historyRepo;
 	
 	@RequestMapping("new")
 	public String newScript(HttpSession session, ModelMap model)
@@ -63,6 +67,13 @@ public class ScriptController {
 		else
 		{
 			script = scriptRepo.findOneById(id);
+			
+			History history = new History();
+			history.setContent(content);
+			history.setDate(new Date());
+			history.setScript(script);
+			
+			historyRepo.save(history);
 		}
 		
 		script.setTitle(title);

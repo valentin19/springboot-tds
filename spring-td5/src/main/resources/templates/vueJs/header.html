@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="/webjars/Semantic-UI/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.5.3/vuetify.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+</head>
+<body>
+
+<div class="ui clearing segment">
+	{{#user}}<h3 class="ui left floated header">Login : {{login}} </h3>{{/user}}
+	{{#user}}<h3 class="ui left floated header">Email :{{email}} </h3>{{/user}}
+  <h3 class="ui right floated header">
+	{{#user}}
+    	<a href="/logout" class="ui button">Déconnexion</a>
+	{{/user}}
+	
+	{{^user}}
+		<a href="/index" class="ui button">Connexion</a>
+	{{/user}}
+
+  </h3>
+</div>
+
+<v-app>
+  <v-content>
+    <v-container fluid>

@@ -1,0 +1,43 @@
+{{>vueJS/header}}
+
+
+  <div>
+    <v-toolbar flat color="white">
+      <v-toolbar-title>Organisations</v-toolbar-title>
+      <input v-model="search">
+      <v-divider
+        class="mx-2"
+        inset
+        vertical
+      ></v-divider>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <v-data-table
+      :headers="headers"
+      :items="script"
+      class="elevation-1"
+    >
+      <template v-slot:items="props">
+        <td class="text-xs-left"><% props.item.title %></td>
+        <td class="text-xs-left"><% props.item.description %></td>
+        <td class="text-xs-left"><% props.item.content %></td>
+        <td class="justify-center layout px-0">
+          <!--<v-icon
+            small
+            class="mr-2"
+            @click="editItem(props.item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteItem(props.item)"
+          >
+            delete
+          </v-icon>-->
+        </td>
+      </template>
+    </v-data-table>
+  </div>
+  
+{{>vueJS/footer}}

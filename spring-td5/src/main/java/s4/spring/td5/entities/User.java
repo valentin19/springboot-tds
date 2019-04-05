@@ -7,6 +7,7 @@ import javax.persistence.OneToMany;
 
 import s4.spring.td5.entities.Script;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,6 +25,11 @@ public class User {
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="user")
 	private List<Script> script;
+	
+	public User()
+	{
+		script = new ArrayList<>();
+	}
 	
 	public List<Script> getScript() {
 		return script;

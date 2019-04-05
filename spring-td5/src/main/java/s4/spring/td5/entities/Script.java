@@ -1,5 +1,6 @@
 package s4.spring.td5.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,6 @@ public class Script {
 	private String title;
 	private String description;
 	private String content;
-	private Date creationDate;
 	
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="script")
@@ -34,6 +34,11 @@ public class Script {
 	
 	@ManyToOne
 	private Category category;
+	
+	public Script()
+	{
+		history = new ArrayList<>();
+	}
 	
 	public List<History> getHistory() {
 		return history;
@@ -83,12 +88,7 @@ public class Script {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getCreationDate() {
-		return creationDate;
-	}
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+
 	
 	
 

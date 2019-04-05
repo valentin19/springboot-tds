@@ -1,5 +1,6 @@
 package s4.spring.td5.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,11 @@ public class Category {
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="category")
 	private List<Script> script;
+	
+	public Category()
+	{
+		script = new ArrayList<>();
+	}
 	
 	public List<Script> getScript() {
 		return script;

@@ -1,6 +1,7 @@
 package s4.spring.td5.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.view.RedirectView;
 
+import io.github.jeemv.springboot.vuejs.VueJS;
+
+import java.util.List;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -37,6 +41,9 @@ public class ScriptController {
 	@Autowired
 	private HistoryRepository historyRepo;
 	
+	@Autowired
+	private VueJS vue;
+	
 	@RequestMapping("new")
 	public String newScript(HttpSession session, ModelMap model)
 	{
@@ -62,7 +69,7 @@ public class ScriptController {
 		{
 			script = new Script();
 			script.setUser(user);
-			script.setCreationDate(new Date());
+			//script.setCreationDate(new Date());
 		}
 		else
 		{
@@ -107,6 +114,21 @@ public class ScriptController {
 		Script script = scriptRepo.findOneById(id);
 		scriptRepo.delete(script);
 		return new RedirectView("/index");
+	}
+	
+	@RequestMapping("search")
+	public String search(HttpSession session, Model model)
+	{
+		model.addAttribute("vue", vue);
+		User user = (User)session.getAttribute("user");
+		List<Script> scripts = scriptRepo.findAll();
+		
+		vue.addData("script", scripts);
+		vue.addDataRaw("headers", "[{text:'Title', value:'title'},{text:'Description', value:'description'},{text:'Content', value:'content'}]");
+		vue.addComputed("formTitle", "(this.itemIndex==-1)?'Nouvelle orga':'Modification orga'");
+		vue.addComputed("search", "");
+
+		return "vueJs/search";
 	}
 
 }
